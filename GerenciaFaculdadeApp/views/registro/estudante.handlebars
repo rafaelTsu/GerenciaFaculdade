@@ -1,0 +1,30 @@
+<h2>Lista de estudantes: </h2>
+<hr>
+<a href="/registro/estudante/add"><button class="btn btn-success">Novo estudante</button></a>
+
+{{#each estudante}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4>{{nome}}</h4>
+            <small>CPF: {{cpf}}</small>
+            <br>
+            <small>Endereço: {{endereco}}</small>
+            <br>
+            <small>Código de matrícula: {{cod_matricula}}</small>
+            <br>
+            <small>Data da matrícula: {{dt_matricula}}</small>
+            <br>
+            <small>ID do estudante: {{id}}</small>
+            <br>
+            <small>ID do curso: {{id_curso}}</small>
+            <br>
+            <a href="/registro/estudante/edit/{{id}}"><button class="btn btn-success mt-4">Editar estudante</button></a>
+            <form action="/registro/estudante/deletar" method="POST">
+                <input type="hidden" name="id" value="{{id}}">
+                <button type="submit" class="btn btn-danger mt-2">Excluir estudante</button>
+            </form>
+        </div>
+    </div>
+{{else}}
+    <h4 class="mt-3">Nenhum estudante registrado!</h4>
+{{/each}}

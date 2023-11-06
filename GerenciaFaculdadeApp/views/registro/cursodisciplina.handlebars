@@ -1,0 +1,20 @@
+<h2>{{curso.nome}}</h2>
+<h4>Código do curso: {{curso.codigo}}</h4>
+<hr>
+<a href="/registro/curso/addcursodisciplina/{{curso.id}}"><button class="btn btn-success">Registrar disciplina</button></a>
+
+{{#each cursodisciplina}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4>{{id_disciplina}}</h4>
+            <a href="/registro/curso/visualizarcursodisciplina/{{id_disciplina}}"><button class="btn btn-success mt-4">Visualizar disciplina</button></a>
+            <br>
+            <form action="/registro/curso/cursodisciplina/deletar" method="POST">
+                <input type="hidden" name="id" value="{{id}}">
+                <button type="submit" class="btn btn-danger mt-4">Excluir curso</button>
+            </form>
+        </div>
+    </div>
+{{else}}
+    <h4 class="mt-3">Nenhuma disciplina relacionada ao curso!</h4>
+{{/each}}

@@ -1,0 +1,22 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{texto}}</div>
+{{/each}}
+
+<h3>Editar curso: </h3>
+<div class="card">
+    <div class="card-body">
+        <form action="/registro/curso/edit" method="POST">
+            <input type="hidden" value="{{curso.id}}" name="id">
+            <label for="nome">Nome: </label>
+                <input type="text" id="nome" name="nome" placeholder="Nome do curso" value="{{curso.nome}}" class="form-control">
+            <label for="codigo">Código do curso: </label>
+                <input type="text" id="codigo" name="codigo" placeholder="Código do curso" value="{{curso.codigo}}" class="form-control">
+            <label for="unidade">Unidade: </label>
+                <input type="text" id="unidade" name="unidade" placeholder="Unidade do curso" value="{{curso.unidade}}" class="form-control">
+            <label for="descricao">Descrição: </label>
+                <input type="text" id="descricao" name="descricao" placeholder="Descrição" value="{{curso.descricao}}" class="form-control">
+            <br>
+            <button type="submit" class="btn btn-success">Editar curso</button>
+        </form>
+    </div>
+</div>

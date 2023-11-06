@@ -1,0 +1,26 @@
+<h2>Lista de professores: </h2>
+<hr>
+<a href="/registro/professor/add"><button class="btn btn-success">Novo professor</button></a>
+
+{{#each professor}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4>{{nome}}</h4>
+            <small>CPF: {{cpf}}</small>
+            <br>
+            <small>Especialização: {{especializacao}}</small>
+            <br>
+            <small>Data de contratação: {{dt_contratacao}}</small>
+            <br>
+            <small>ID do professor: {{id}}</small>
+            <br>
+            <a href="/registro/professor/edit/{{id}}"><button class="btn btn-success mt-4">Editar professor</button></a>
+            <form action="/registro/professor/deletar" method="POST">
+                <input type="hidden" name="id" value="{{id}}">
+                <button type="submit" class="btn btn-danger mt-2">Excluir professor</button>
+            </form>
+        </div>
+    </div>
+{{else}}
+    <h4 class="mt-3">Nenhum professor registrado!</h4>
+{{/each}}

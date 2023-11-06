@@ -1,0 +1,26 @@
+<h2>Lista das disciplinas: </h2>
+<hr>
+<a href="/registro/disciplina/add"><button class="btn btn-success">Nova disciplina</button></a>
+
+{{#each disciplina}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4>{{nome}}</h4>
+            <small>Código da disciplina: {{codigo}}</small>
+            <br>
+            <small>Carga horária: {{ch}}h</small>
+            <br>
+            <small>ID do professor: {{id_professor}}</small>
+            <br>
+            <small>CPF do monitor: {{cpf_monitor}}</small>
+            <br>
+            <a href="/registro/disciplina/edit/{{id}}"><button class="btn btn-success mt-4">Editar disciplina</button></a>
+            <form action="/registro/disciplina/deletar" method="POST">
+                <input type="hidden" name="id" value="{{id}}">
+                <button type="submit" class="btn btn-danger mt-2">Excluir disciplina</button>
+            </form>
+        </div>
+    </div>
+{{else}}
+    <h4 class="mt-3">Nenhuma disciplina registrada!</h4>
+{{/each}}
