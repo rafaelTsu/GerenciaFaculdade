@@ -282,7 +282,8 @@ router.post('/curso/cursodisciplina/novo', (req,res) =>{
     }
 
     if(erros.length > 0){
-        res.render("registro/addcurso", {erros: erros})
+        req.flash("error_msg", "Disciplina inválida.")
+        res.redirect("/registro/curso")
     }else{
         (async () => {
             try {
