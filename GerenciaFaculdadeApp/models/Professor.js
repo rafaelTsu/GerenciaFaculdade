@@ -1,30 +1,31 @@
-const Disciplina = require('./Disciplina.js')
 const db = require('./db.js')
 const Sequelize = require('sequelize')
 
+const Disciplina = require('./Disciplina.js')
+
 // Definição dos atributos do professor
-const Professor = db.sequelize.define('professores', {
+const Professor = db.define('professores', {
     id:{
-        type: db.Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
     nome:{
-        type: db.Sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
     cpf:{
-        type: db.Sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         unique:true
     },
     dt_contratacao:{
-        type: db.Sequelize.DATE,
-        defaultValue: db.Sequelize.literal('CURRENT_TIMESTAMP')
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
     },
     especializacao:{
-        type: db.Sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     }
 })

@@ -1,31 +1,33 @@
-const Estudante = require('./Estudante.js')
-const CursoDisciplina = require('./CursoDisciplina.js')
 const db = require('./db.js')
 const Sequelize = require('sequelize')
 
+const Estudante = require('./Estudante.js')
+const cursoDisciplina = require('./CursoDisciplina.js')
+const Disciplina = require('./Disciplina.js')
+
 // Definição dos atributos do curso
-const Curso = db.sequelize.define('cursos', {
+const Curso = db.define('cursos', {
     id:{
-        type: db.Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
     nome:{
-        type: db.Sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
     codigo:{
-        type: db.Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
         unique: true
     },
     unidade:{
-        type: db.Sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
     descricao:{
-        type: db.Sequelize.STRING
+        type: Sequelize.STRING
     }
 })
 
@@ -35,20 +37,21 @@ Curso.hasMany(Estudante, {
     constraints: true
 })
 
-Curso.hasMany(CursoDisciplina, {
-    foreignKey: 'id_curso',
-    constraints: true
-})
-
-/*
 // Relacionamento n para n Curso com Disciplina
 Curso.belongsToMany(Disciplina,{
     through:{
-        model: CursoDisciplina
+        model: cursoDisciplina
     },
     foreignKey: 'id_curso',
     constraints: true
 })
-*/
+
+Disciplina.belongsToMany(Curso, {
+    through: {
+        model: cursoDisciplina
+    },
+    foreignKey: 'id_disciplina',
+    constraint: true
+})
 
 module.exports = Curso

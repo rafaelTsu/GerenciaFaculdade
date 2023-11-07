@@ -1,12 +1,15 @@
 const Sequelize = require('sequelize');
 
 // Conexão com banco de dados
-const sequelize = new Sequelize('projeto', 'postgres', '123', {
-    host: "localhost",
-    dialect: "postgres"
+const nome_db = 'projeto'
+const username = 'postgres'
+const senha_db = '123'
+const host = 'localhost'
+const dialect = 'postgres'
+
+const sequelize = new Sequelize(nome_db, username, senha_db, {
+    host: host,
+    dialect: dialect
 });
 
-module.exports = {
-    Sequelize: Sequelize,
-    sequelize: sequelize
-}
+module.exports = sequelize;

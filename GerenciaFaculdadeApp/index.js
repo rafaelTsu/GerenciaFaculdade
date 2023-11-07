@@ -37,24 +37,19 @@ const registro = require("./routes/registro.js")
     // Public
         app.use(express.static(path.join(__dirname, "public")))
     // Sequelize
-        const Estudante = require('./models/Estudante.js')
-        const Professor = require('./models/Professor.js')
-        const Curso = require('./models/Curso.js')
-        const CursoDisciplina = require('./models/CursoDisciplina.js')
-        const Disciplina = require('./models/Disciplina.js')
-
         async function criarDB() {
-            await Curso.sync()
-            await Estudante.sync()
-            await Professor.sync()
-            await Disciplina.sync()
-            await CursoDisciplina.sync()
+            const db = require('./models/db.js')
+            const Estudante = require('./models/Estudante.js')
+            const Professor = require('./models/Professor.js')
+            const Curso = require('./models/Curso.js')
+            const Disciplina = require('./models/Disciplina.js')
+            await db.sync()
         }
         criarDB()
 
 // Rotas
 app.get('/', (req,res)=>{
-    res.send("Rota principal")
+    res.redirect("/registro")
 })
 
 app.use('/registro', registro)

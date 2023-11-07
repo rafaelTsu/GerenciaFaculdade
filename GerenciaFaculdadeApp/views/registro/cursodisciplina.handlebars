@@ -6,12 +6,12 @@
 {{#each cursodisciplina}}
     <div class="card mt-4">
         <div class="card-body">
-            <h4>{{id_disciplina}}</h4>
+            <h4>Código da disciplina: {{id_disciplina}}</h4>
             <a href="/registro/curso/visualizarcursodisciplina/{{id_disciplina}}"><button class="btn btn-success mt-4">Visualizar disciplina</button></a>
             <br>
             <form action="/registro/curso/cursodisciplina/deletar" method="POST">
                 <input type="hidden" name="id" value="{{id}}">
-                <button type="submit" class="btn btn-danger mt-4">Excluir curso</button>
+                <button type="submit" class="btn btn-danger mt-4">Desvicular disciplina</button>
             </form>
         </div>
     </div>

@@ -284,16 +284,25 @@ router.post('/curso/cursodisciplina/novo', (req,res) =>{
     if(erros.length > 0){
         res.render("registro/addcurso", {erros: erros})
     }else{
-        CursoDisciplina.create({
-            id_curso: req.body.id,
-            id_disciplina: req.body.disciplina,
-        }).then(()=>{
-            req.flash("success_msg", "Disciplina registrado ao curso com sucesso com sucesso!")
-            res.redirect("/registro/curso");
-        }).catch((erro)=>{
-            req.flash("error_msg", "Houve um erro ao cadastrar o curso: " + erro)
-            res.redirect("/registro/curso")
-        })
+        (async () => {
+            try {
+                const curso1 = await Curso.findByPk(req.body.id);
+                const disciplina1 = await Disciplina.findByPk(req.body.disciplina);
+        
+                if (curso1 && disciplina1) {
+                    await curso1.addDisciplina(disciplina1).then(()=>{
+                        req.flash("success_msg", "Disciplina adicionada ao curso com sucesso!")
+                        res.redirect("/registro/curso")
+                    }).catch((error)=>{
+                        req.flash("error_msg", "Houve um erro ao adicionar a disciplina no curso" + error)
+                        res.redirect("/registro/curso")
+                    });
+                }
+            } catch (error) {
+                req.flash("error_msg", "Houve um erro ao adicionar a disciplina no curso" + error)
+                res.redirect("/registro/curso")
+            }
+        })();
     }
 })
 

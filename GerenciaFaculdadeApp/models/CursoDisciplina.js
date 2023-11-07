@@ -1,10 +1,10 @@
-const db = require('./db.js');
 const Sequelize = require('sequelize')
+const db = require('./db.js');
 
 // Denifição dos atributos do CursoDisciplina
-const CursoDisciplina = db.sequelize.define('cursodisciplinas', {
+const CursoDisciplina = db.define('cursodisciplinas', {
     id:{
-        type: db.Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
