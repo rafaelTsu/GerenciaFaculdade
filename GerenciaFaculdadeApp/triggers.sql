@@ -55,7 +55,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER antes_deletar_professor
+CREATE TRIGGER deletar_professor
 BEFORE DELETE ON professores
 FOR EACH ROW
 EXECUTE FUNCTION verificar_disciplinas_professor();
